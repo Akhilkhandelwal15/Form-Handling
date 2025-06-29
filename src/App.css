@@ -21,7 +21,7 @@ body, html{
   align-items: center;
   justify-content: center;
   min-height: 400px;
-  width: 500px;
+  width: 450px;
   margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -39,7 +39,7 @@ body, html{
 .form-container form{
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  /* gap: 15px; */
 }
 .form-container form input{
   height: 48px;
@@ -50,6 +50,16 @@ body, html{
   background-color: #fff;
   outline: none;
   transition: border-color 0.3s ease;
+  width: 100%;
+}
+p.error {
+    color: red;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    height: 12px;
+    padding-left: 14px;
+    letter-spacing: 1px;
 }
 .form-container form input:focus {
   border-color: #00bcd4;

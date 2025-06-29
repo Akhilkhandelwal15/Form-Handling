@@ -8,6 +8,8 @@ export default function(){
         password: ""
     });
 
+    const [errors, setErrors] = useState({});
+
     function handleInputChange(event){
         const {name, value} = event.target;
         setFormData((prev)=>({...prev, [name]: value}));
@@ -15,37 +17,65 @@ export default function(){
 
     function handleFormSubmit(event){
         event.preventDefault();
-        console.log(formData);
+        if(validateForm()){
+            console.log(formData);
+        }
+        else{
+            console.log("Form is not validated");
+        }
+    }
+
+    function validateForm(){
+        const newErrors = {};
+        if(!formData.firstname.trim()) newErrors.firstname = "First name is required";
+        if(!formData.lastname.trim()) newErrors.lastname = "Last name is required";
+        if(!formData.email.trim()) newErrors.email = "Email is required";
+        if(!formData.password.trim()) newErrors.password ="Password is required";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     }
     return (
         <div className="main-container">
             <h1>SignUp</h1>
             <div className="form-container">            
                 <form>
-                    <input type="text" 
-                        name = "firstname"
-                        value = {formData.firstname}
-                        onChange = {handleInputChange}
-                        placeholder="Enter first name"
-                    />
-                    <input type="text" 
-                        name = "lastname"
-                        value = {formData.lastname}
-                        onChange = {handleInputChange}
-                        placeholder="Enter last name"
-                    />
-                    <input type="email" 
-                        name = "email"
-                        value = {formData.email}
-                        onChange = {handleInputChange}
-                        placeholder="Enter email"
-                    />
-                    <input type="password" 
-                        name = "password"
-                        value = {formData.password}
-                        onChange = {handleInputChange}
-                        placeholder="Enter password"
-                    />
+                    <div className="input-wrapper">
+                        <input type="text" 
+                            name = "firstname"
+                            value = {formData.firstname}
+                            onChange = {handleInputChange}
+                            placeholder="Enter first name"
+                        />
+                        <p className="error">{errors.firstname}</p>
+                    </div>
+                    <div className="input-wrapper">
+                        <input type="text"
+                            name = "lastname"
+                            value = {formData.lastname}
+                            onChange = {handleInputChange}
+                            placeholder="Enter last name"
+                        />
+                        <p className="error">{errors.lastname}</p>
+                    </div>
+                    <div className="input-wrapper">
+                        <input type="email"
+                            name = "email"
+                            value = {formData.email}
+                            onChange = {handleInputChange}
+                            placeholder="Enter email"
+                        />
+                        <p className="error">{errors.email}</p>
+                    </div>
+                    <div className="input-wrapper">
+                        <input type="password"
+                            name = "password"
+                            value = {formData.password}
+                            onChange = {handleInputChange}
+                            placeholder="Enter password"
+                        />
+                        <p className="error">{errors.password}</p>
+                    </div>
                     <button type="submit" onClick={handleFormSubmit}>Submit</button>
                 </form>
             </div>
