@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import SignupForm from './SignupForm'
 import SignupUsingReactHookForm from './SignupUsingReactHookForm'
+import SchemaBasedValidation from './SchemaBasedValidations'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       {/* <SignupForm /> */}
-      <SignupUsingReactHookForm />
+      {/* <SignupUsingReactHookForm /> */}
+      <SchemaBasedValidation />
     </>
   )
 }
